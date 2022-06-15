@@ -79,7 +79,6 @@ body {
 }
 .add-divider-btn:hover{
   cursor: pointer;
-  box-shadow: 1px 1px 1px rgba(0,0,0, .7),  -1px -1px 1px rgba(0,0,0, .7);
   transform: scale(1.1);
 }
 .hideAddDivider{
@@ -135,11 +134,50 @@ body {
 /* main-body start */
 
 .main-body {
-
   grid-column: 2/3;
   grid-row: 2/3;
+  position: relative;
+  height: 100%;
   padding: 3% 10%;
+}
+.todo-divider-tab{
+  width: 90%;
+  max-width: 900px;
+  padding: 2% 2%;
+  border-radius: 5px;
+  background-color: rgb(120, 138, 168);
+  color:white;
+  border: solid green 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.todoH2{
+  margin:0;
+}
+/* everything below is a pop window to add a todo to a divider */
+.display{
+  border: solid red 1px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, .4);
   display: flex;
   justify-content: center;
+  align-items: center;
+
+}
+.diplay-message-box{
+      border: solid green 1px;
+      width: 100%;
+      max-width: 900px;
+      background-color: white;
+}
+.message-box{
+
 }
 /* main-body stop */

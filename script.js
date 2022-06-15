@@ -10,7 +10,8 @@ function divider(name) {
     return {
       title,
       description,
-      priority
+      priority,
+
     }
   }
 }
@@ -96,5 +97,29 @@ document.addEventListener("click", (event) => {
     let divider_parent_node = event.target.parentNode;
     dividers.splice(dividers.indexOf(delete_divider_name), 1);
     divider_parent_node.remove();
+  }
+})
+
+// event to add a todo to a dividers
+document.addEventListener("click", (event) =>{
+  let mainBody = document.querySelector(".main-body");
+
+  if(event.target.classList.contains("side-li")){
+    if(mainBody.querySelector(".todo-divider-tab") === null){
+
+      console.log("there is a child")
+      let todoTab = document.createElement("div");
+      todoTab.classList.add("todo-divider-tab");
+
+      let dividerName = event.target.firstChild.textContent;
+      let todoH2 = document.createElement("h2");
+      todoH2.classList.add("todoH2");
+      todoH2.append(document.createTextNode(dividerName));
+      todoTab.append(todoH2);
+
+      let display = document.querySelector(".display");
+      mainBody.insertBefore(todoTab, display);
+    }
+
   }
 })
