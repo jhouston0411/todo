@@ -108,6 +108,7 @@ document.addEventListener("click", (event) => {
 
     //if the divider is opened in main-body delete that as well
     let mainBody = document.querySelector(".main-body").firstElementChild;
+    console.log(mainBody);
     let todo_divider = document.querySelector(".todo-divider-tab")
 
     if (todo_divider != null && todo_divider.firstElementChild.textContent === divider_name_content) {
@@ -120,32 +121,31 @@ document.addEventListener("click", (event) => {
 // event to open a divider
 document.addEventListener("click", (event) => {
   let mainBody = document.querySelector(".main-body");
+  let todo_divider = document.querySelector(".todo-divider-tab")
 
   if (event.target.classList.contains("side-li")) {
-    let todoTab = document.createElement("div");
-    todoTab.classList.add("todo-divider-tab");
-
-    let dividerName = event.target.firstChild.textContent;
-    let todo_head = document.createElement("div")
-    todo_head.classList.add("todo-head-format")
-    let todoH2 = document.createElement("h2");
-    let i = document.createElement("i")
-    i.setAttribute("class", "add-todo-item")
-    i.classList.add("fa-solid");
-    i.classList.add("fa-plus")
-    todoH2.classList.add("todoH2");
-    todoH2.append(document.createTextNode(dividerName));
-    todo_head.append(todoH2);
-    todo_head.append(i)
-    todoTab.append(todo_head);
-
-    let display = document.querySelector(".display");
-    mainBody.insertBefore(todoTab, display);
+    if (todo_divider != null && mainBody.firstElementChild === todo_divider) {
+      todo_divider.remove()
+      openDivider(mainBody, event);
+    } else {
+      openDivider(mainBody, event);
+    }
   }
-
-
 })
 
+//create a todo item for a divider once the add is clicked within the main-body
+document.addEventListener("click", (event) =>{
+   let display = document.querySelector("#display");
+   // let sideli = document.querySelector(".side-li");
+   // let dividerBtn = document.querySelector(".add-divider-btn");
+   if(event.target.classList.contains("add-todo-item")){
+       display.classList.add("active");
+       // sideli.classList.add("side-li-disable");
+       // dividerBtn.classList.add("add-divider-btn-disable";)
+   }
+})
+
+//logic to open a divider to main body
 function createDividers(newDivider) {
   let newLi = document.createElement("li");
   newLi.classList.add("side-li")
@@ -164,4 +164,27 @@ function createDividers(newDivider) {
   dividers.push(temp);
 
   localStorage.setItem('dividers', JSON.stringify(dividers));
+}
+
+//logic to open a divider if one is open close it first then open the clicked divider
+function openDivider(mainBody, event) {
+  let todoTab = document.createElement("div");
+  todoTab.classList.add("todo-divider-tab");
+
+  let dividerName = event.target.firstChild.textContent;
+  let todo_head = document.createElement("div")
+  todo_head.classList.add("todo-head-format")
+  let todoH2 = document.createElement("h2");
+  let i = document.createElement("i")
+  i.setAttribute("class", "add-todo-item")
+  i.classList.add("fa-solid");
+  i.classList.add("fa-plus")
+  todoH2.classList.add("todoH2");
+  todoH2.append(document.createTextNode(dividerName));
+  todo_head.append(todoH2);
+  todo_head.append(i)
+  todoTab.append(todo_head);
+
+  let display = document.querySelector(".display");
+  mainBody.insertBefore(todoTab, display);
 }
