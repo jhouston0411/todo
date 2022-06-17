@@ -212,12 +212,25 @@ body {
 }
 
 .diplay-message-box {
-  border: solid green 1px;
-  width: 100%;
+  border-radius: 5px;
+  padding: 3rem 3rem;
   max-width: 900px;
   background-color: white;
 }
-
-.message-box {}
-
+.message-box-header{
+  margin: 0;
+}
+.todo-form{
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: .75rem;
+}
+.todo-form-left{
+  display: flex;
+  flex-direction: column;
+}
+.todo-form-right{
+  display: flex;
+  flex-direction: column;
+}
 /* main-body stop */

@@ -32,7 +32,21 @@
     <div class="main-body">
       <div class="display" id="display">
           <div class="diplay-message-box">
-            <h2>This is for a new todo </h2>
+            <h2 id="message-box-header"> </h2>
+            <form class="todo-form">
+             <div class="todo-form-left">
+                <label for="title">ToDo Title</label>
+                <input type="text" name="title" value="">
+                <label for="description">Decsription</label>
+                <input type="text" name="description" value="">
+             </div>
+             <div class="todo-form-right">
+                <label for="priority">Priority</label>
+                <input type="text" name="priority" value="">
+                <label for="duedate">Due Date</label>
+                <input type="date" name="duedate" value="">
+             </div>
+            </form>
           </div>
       </div>
     </div>

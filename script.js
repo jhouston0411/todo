@@ -136,10 +136,14 @@ document.addEventListener("click", (event) => {
 //create a todo item for a divider once the add is clicked within the main-body
 document.addEventListener("click", (event) =>{
    let display = document.querySelector("#display");
+   let messageBoxHeader = document.querySelector("#message-box-header");
+   let dividerName = event.target.previousElementSibling.textContent
    // let sideli = document.querySelector(".side-li");
    // let dividerBtn = document.querySelector(".add-divider-btn");
    if(event.target.classList.contains("add-todo-item")){
        display.classList.add("active");
+       messageBoxHeader.textContent = dividerName;
+
        // sideli.classList.add("side-li-disable");
        // dividerBtn.classList.add("add-divider-btn-disable";)
    }
