@@ -9,7 +9,7 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 2fr 4fr;
   grid-template-rows: auto 4fr;
   height: 100vh;
 }
@@ -64,6 +64,7 @@ body {
   background-color: white;
   color: rgb(120, 138, 168);
   width: 100%;
+  min-width: 150px;
   height: 40px;
   border-radius: 5px;
 }
@@ -106,7 +107,7 @@ body {
   border: none;
   outline: none;
   border-radius: 5px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: rgb(120, 138, 168);
 }
 
@@ -126,7 +127,7 @@ body {
   transform: scale(2.1)
 }
 
-.enter-green-btn {
+.submit-green-btn {
   background-color: #4ADE80;
   border-radius: 3px;
   width: 80px;
@@ -136,7 +137,7 @@ body {
   cursor: pointer;
 }
 
-.exit-red-btn {
+.cancel-red-btn {
   background-color: #EF4444;
   border-radius: 3px;
   width: 80px;
@@ -207,30 +208,65 @@ body {
 }
 
 .display.active {
-  opacity: 2;
+  opacity: 1;
   pointer-events: auto;
 }
 
 .diplay-message-box {
   border-radius: 5px;
-  padding: 3rem 3rem;
-  max-width: 900px;
+  border: solid .70rem  rgb(120, 138, 168);
+  padding: 3rem 1rem;
+  width: 100%;
+  max-width: 600px;
   background-color: white;
+  color:  rgb(62, 78, 122);
 }
-.message-box-header{
-  margin: 0;
+#message-box-header{
+  margin: 0 0 20px 0;
 }
 .todo-form{
   display: grid;
-  grid-template-columns: repeat(2, max-content);
-  gap: .75rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  justify-content: center;
 }
 .todo-form-left{
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 .todo-form-right{
   display: flex;
   flex-direction: column;
+  gap:1rem;
+}
+.todo-input{
+  height: 40px;
+  width: 100%;
+  min-width: 100px;
+  outline: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  color:  rgb(120, 138, 168);
+}
+.form-btn{
+  width: 80px;
+  height: 40px;
+}
+.form-btn-submit{
+  align-self: flex-end;
+  background-color: #4ADE80;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.form-btn-cancel{
+  align-self: flex-start;
+  background-color: #EF4444;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 /* main-body stop */

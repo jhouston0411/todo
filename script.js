@@ -42,6 +42,11 @@ window.addEventListener("load", () => {
     createDividers(storageDividers[divider].dividername);
   }
 })
+
+//need to put event listener on divider name so it will bubble up to side-li
+// document.addEventListener("click", )
+
+
 // event to add a new divider
 document.addEventListener("click", (event) => {
   if (event.target.classList.contains("add-divider-btn")) {
@@ -52,17 +57,18 @@ document.addEventListener("click", (event) => {
     newDividerSection.setAttribute("Id", "divider-format")
     let dividerInput = document.createElement("input");
     dividerInput.setAttribute("type", "text")
+    dividerInput.setAttribute("placeholder", "Enter todo Item here")
     dividerInput.classList.add("divider-input")
     newDividerSection.append(dividerInput);
 
     let dividerSection = document.createElement("div");
     dividerSection.classList.add("divider-section-format")
     let enter = document.createElement("button");
-    enter.classList.add("enter-green-btn");
-    enter.textContent = "Enter"
+    enter.classList.add("submit-green-btn");
+    enter.textContent = "Submit"
     let exit = document.createElement("button");
-    exit.classList.add("exit-red-btn")
-    exit.textContent = "Exit"
+    exit.classList.add("cancel-red-btn")
+    exit.textContent = "Cancel"
     dividerSection.append(enter);
     dividerSection.append(exit);
 
@@ -75,7 +81,7 @@ document.addEventListener("click", (event) => {
 //event to confirm and name the divider or cancel new divider
 document.addEventListener("click", (event) => {
 
-  if (event.target.classList.contains("enter-green-btn")) {
+  if (event.target.classList.contains("submit-green-btn")) {
     const newDivider = document.querySelector(".divider-input").value;
     if (newDivider != "") {
       createDividers(newDivider);
@@ -84,7 +90,7 @@ document.addEventListener("click", (event) => {
     } else {
       alert("Please Enter A Todo list Divider Name")
     }
-  } else if (event.target.classList.contains("exit-red-btn")) {
+  } else if (event.target.classList.contains("cancel-red-btn")) {
     document.querySelector("#divider-format").remove()
     document.querySelector(".add-divider-btn").classList.remove("hideAddDivider")
   }
@@ -142,7 +148,7 @@ document.addEventListener("click", (event) =>{
    // let dividerBtn = document.querySelector(".add-divider-btn");
    if(event.target.classList.contains("add-todo-item")){
        display.classList.add("active");
-       messageBoxHeader.textContent = dividerName;
+       messageBoxHeader.textContent = `${dividerName} Todo Item`;
 
        // sideli.classList.add("side-li-disable");
        // dividerBtn.classList.add("add-divider-btn-disable";)
