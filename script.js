@@ -41,6 +41,7 @@ window.addEventListener("load", () => {
   for (let divider in storageDividers) {
     createDividers(storageDividers[divider].dividername);
   }
+  event.stopPropagation();
 })
 
 //need to put event listener on divider name so it will bubble up to side-li
@@ -114,14 +115,13 @@ document.addEventListener("click", (event) => {
 
     //if the divider is opened in main-body delete that as well
     let mainBody = document.querySelector(".main-body").firstElementChild;
-    console.log(mainBody);
     let todo_divider = document.querySelector(".todo-divider-tab")
 
     if (todo_divider != null && todo_divider.firstElementChild.textContent === divider_name_content) {
       mainBody.remove(todo_divider);
     }
   }
-
+  event.stopPropagation();
 })
 
 // event to open a divider
@@ -137,23 +137,34 @@ document.addEventListener("click", (event) => {
       openDivider(mainBody, event);
     }
   }
+  event.stopPropagation();
 })
 
 //create a todo item for a divider once the add is clicked within the main-body
-document.addEventListener("click", (event) =>{
-   let display = document.querySelector("#display");
-   let messageBoxHeader = document.querySelector("#message-box-header");
-   let dividerName = event.target.previousElementSibling.textContent
-   // let sideli = document.querySelector(".side-li");
-   // let dividerBtn = document.querySelector(".add-divider-btn");
-   if(event.target.classList.contains("add-todo-item")){
-       display.classList.add("active");
-       messageBoxHeader.textContent = `${dividerName} Todo Item`;
+document.addEventListener("click", (event) => {
+  let display = document.querySelector("#display");
+  let messageBoxHeader = document.querySelector("#message-box-header");
 
-       // sideli.classList.add("side-li-disable");
-       // dividerBtn.classList.add("add-divider-btn-disable";)
-   }
+  let sideli = document.querySelector(".divider-ul-list");
+  let dividerBtn = document.querySelector(".add-divider-btn");
+
+  if (event.target.classList.contains("add-todo-item")) {
+    let dividerName = document.querySelector(".todoH2").textContent;
+    display.classList.add("active");
+    messageBoxHeader.textContent = `${dividerName} Todo Item`;
+
+    // disable adding new divider and opening a new divider until user is done with new todo form
+    sideli.classList.add("side-li-disable");
+    dividerBtn.classList.add("add-divider-btn-disable");
+  }
+  event.stopPropagation();
 })
+
+// document.addEventListener("click", (event) =>{
+//     if(event.target.classList.contains("form-btn-submit")){
+//       console.log("hi")
+//     }
+// })
 
 //logic to open a divider to main body
 function createDividers(newDivider) {
