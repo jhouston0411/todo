@@ -193,7 +193,7 @@ body {
 
 /* everything below is a popup window to add a todo to a divider */
 .display {
-  border: solid red 1px;
+
   opacity: 0;
   pointer-events: none;
   position: absolute;

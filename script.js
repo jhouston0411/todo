@@ -39,6 +39,7 @@ window.addEventListener("load", () => {
   let storageDividers = JSON.parse(localStorage.getItem("dividers"));
   let tempName;
   for (let divider in storageDividers) {
+    // dividers.push(storageDividers[divider])
     createDividers(storageDividers[divider].dividername);
   }
   event.stopPropagation();
@@ -160,14 +161,44 @@ document.addEventListener("click", (event) => {
   event.stopPropagation();
 })
 
-// document.addEventListener("click", (event) =>{
-//     if(event.target.classList.contains("form-btn-submit")){
-//       console.log("hi")
-//     }
-// })
+//event to save todo item to divider
+document.addEventListener("click", (event) =>{
+  let display = document.querySelector("#display");
+  let sideli = document.querySelector(".divider-ul-list");
+  let dividerBtn = document.querySelector(".add-divider-btn");
+  let form = new FormData(document.querySelector(".todo-form"));
+
+
+    if(event.target.classList.contains("form-btn-submit")){
+        let dividerName = document.querySelector(".todoH2").textContent;
+        let title = form.get("title");
+        let description = form.get("description");
+        let priority = form.get("priority");
+        let duedate = form.get("duedate");
+
+        for (let i in dividers) {
+          if (dividers[i].dividername === dividerName){
+              let div = dividers[i];
+              console.log(div)
+              temptitle = div.todo(title, description, priority);
+              div.addTodo(temptitle)
+              console.log(div)
+              localStorage.setItem('dividers', JSON.stringify(dividers));
+              console.log(div)
+
+          }
+        }
+    }
+    else if(event.target.classList.contains("form-btn-cancel")){
+       display.classList.remove("active")
+       sideli.classList.remove("side-li-disable");
+       dividerBtn.classList.remove("add-divider-btn-disable");
+    }
+})
 
 //logic to open a divider to main body
 function createDividers(newDivider) {
+  let temp = newDivider;
   let newLi = document.createElement("li");
   newLi.classList.add("side-li")
   let div = document.createElement("div");
@@ -180,11 +211,11 @@ function createDividers(newDivider) {
   newLi.append(div);
   newLi.append(i)
   document.querySelector(".divider-ul-list").append(newLi);
-
-  let temp = new divider(newDivider);
+  // console.log(dividers[0])
+  temp = new divider(newDivider);
   dividers.push(temp);
-
   localStorage.setItem('dividers', JSON.stringify(dividers));
+
 }
 
 //logic to open a divider if one is open close it first then open the clicked divider
