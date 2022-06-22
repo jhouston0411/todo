@@ -36,14 +36,14 @@
             <form class="todo-form">
              <div class="todo-form-left">
                 <label for="title">ToDo Title</label>
-                <input type="text" name="title" value="" class="todo-input todo-title">
+                <input type="text" name="title" value="" class="todo-input todo-title" maxlength="15" required>
                 <label for="description">Decsription</label>
-                <input type="text" name="description" value="" class="todo-input todo-description">
-                <button type="button" name="button" class="form-btn-submit form-btn">Submit</button>
+                <input type="text" name="description" value="" class="todo-input todo-description"  maxlength="15">
+                <button type="submit" name="button" class="form-btn-submit form-btn" >Submit</button>
              </div>
              <div class="todo-form-right">
                 <label for="priority">Priority</label>
-                <input type="text" name="priority" value="" class="todo-input todo-priority">
+                <input type="text" name="priority" value="" class="todo-input todo-priority"  maxlength="15">
                 <label for="duedate">Due Date</label>
                 <input type="date" name="duedate" value="" class="todo-input todo-dueDate">
                 <button type="button" name="button" class="form-btn-cancel form-btn">Cancel</button>
@@ -58,8 +58,3 @@
 </body>
 
 </html>
-<!-- // const personal = new divider("personal");
-// const gym = new divider("gym");
-// gym1 = gym.todo("cardio", "running", "high")
-// gym.addTodo(gym1)
-// dividers.push(gym); -->
